@@ -4,33 +4,45 @@
   import Darwin
 #endif
 
-class Vector<Size: UInt64, Type: BinaryFloatingPoint> {
-  private var data: [Type]
+class Vector<Type: BinaryFloatingPoint> {
+    private var data: [Type]
+    private var size: Int {
+        get {
+            data.count
+        }
+    }
 
-  func dotProduct(with other: Vector<Size, Type>) -> Type {
+    init() {
+    self.data = []
+  }
+  init(data: [Type]) {
+    self.data = data
+      
+  }
+  func dotProduct(with other: Vector<Type>) -> Type {
     innerProduct(with: other)
   }
 
-  func innerProduct(with other: Vector<Size, Type>) -> Type {
+  func innerProduct(with other: Vector<Type>) -> Type {
     data.reduce(
-      initialResult: 0,
-      nextPartialResult: { (sum, item) -> Type in
+      0,
+      { (sum, item) -> Type in
         return sum + item
       })
   }
 
-  func lnNorm(n: T) -> Type {
-    data.reduce(
+  func lnNorm(n: Type) -> Type {
+      let result = data.reduce(
       0,
       {
-        (sum: Type, item: Type) -> Type
-        in
-        return sum + pow(n, item)
-
-      })
+          (sum: Type, item: Type) -> Type
+          in
+          return sum + Type(pow(Double(item), Double(n)))
+        })
+    return Type(pow(Double(result), Double(1 / n)))
   }
 
-  func size() -> UInt64 { Size }
+  func getSize() -> Int { return size }
 
   // MARK: - TODO
   //   func outerProduct<Size2: UInt64, Type2: Bin >(with other: Vector<Size2, Type2>) -> Matrix<>

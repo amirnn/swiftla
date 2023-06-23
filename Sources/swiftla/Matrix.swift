@@ -1,20 +1,26 @@
-class Matrix<Rows: UInt64, Columns: UInt64, Type: AdditiveArithmetic, ColumnsBased: Bool> {
+class Matrix<Type: AdditiveArithmetic> {
+  private var rows: Int
+  private var columns: Int
+  private var columnsBased: Bool = true
+
   private var data: [[Type]]
 
-  func multiplyFromLeft<C2: UInt64, ColumnsBased2: Bool>(
-    with rhs: Matrix<Columns, C2, Type, ColumnsBased2>
+  func multiplyFromLeft(
+    with rhs: Matrix<Type>
+  ) -> Matrix<Type> {
+    Matrix<Type>()
+  }
+  func multiplyFromRight(
+    with lhs: Matrix<Type>
   )
-    -> Matrix<
-      Rows, C2, Type, ColumnsBased
-    >
-  func multiplyFromRight<R2: UInt64, ColumnsBased2: Bool>(
-    with lhs: Matrix<R2, Rows, Type, ColumnsBased2>
-  )
-    -> Matrix<
-      R2, Columns, Type, ColumnsBased
-    >
+    -> Matrix<Type>
+  {
+    Matrix<Type>()
+  }
 
   init() {
     data = [[Type]]()
+    rows = 0
+    columns = 0
   }
 }
