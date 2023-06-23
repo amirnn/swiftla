@@ -12,4 +12,4 @@ An open source L(inear) A(lgebra) package for swift
 MIT
 
 ## Author
-Amir Nourinia amir[dot]nouri[dot]nia[atsign]gmail.com
+Amir Nourinia amir[dot]nouri[dot]nia[atsign]gmail[dot]com
