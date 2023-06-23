@@ -1,3 +1,9 @@
+#if os(Linux)
+  import Glibc
+#else
+  import Darwin
+#endif
+
 class Matrix<Type: AdditiveArithmetic> {
   private var rows: Int
   private var columns: Int
